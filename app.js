@@ -39,14 +39,19 @@ const Contract = new web3.eth.Contract(abi, contractAddress);
     web3.eth.defaultAccount = await web3.eth.getAccounts().then( accounts => { return accounts[0]})
 })()
 
+console.log(web3.eth.defaultAccount)
+console.log('hi')
 let get_value = Contract.methods.testGet().call()
     .then(result => {return result})
 
     .catch((err) => console.log(err))
 
 
-let set_value =  Contract.methods.testSet([8]).send()
+let set_value =  Contract.methods.testSet([12]).send({from: '0xbbc55117fcbaeaf28f88512f9e2cbb7611808600'})
     .then(reciept => {return 'everything ok '+ reciept})
+    .catch(error => console.log(error))
+
+
 
 module.exports = {
     get_value,
