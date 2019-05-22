@@ -32,20 +32,26 @@ const abi = [
         "type": "function"
     }
 ]
-
 const Contract = new web3.eth.Contract(abi, contractAddress);
 
-let default_account
 
-web3.eth.getAccounts().then( accounts => { default_account = accounts[0]})
+(async () =>{
+    web3.eth.defaultAccount = await web3.eth.getAccounts().then( accounts => { return accounts[0]})
+})()
 
-let x
+let get_value = Contract.methods.testGet().call()
+    .then(result => {return result})
 
-Contract.methods.testGet().call({from: default_account}).then(result => {x = result})
+    .catch((err) => console.log(err))
 
-console.log(x._hex.slice(2))
 
-module.exports = x._hex.slice(2)
+let set_value =  Contract.methods.testSet([8]).send()
+    .then(reciept => {return 'everything ok '+ reciept})
+
+module.exports = {
+    get_value,
+    set_value
+}
 
 
 
