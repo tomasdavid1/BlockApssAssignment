@@ -17,11 +17,21 @@
             </div>
 
             <div class="inner cover">
-                <h1 class="cover-heading">Welcome to the blockchain Lottery</h1>
-                <p class="lead">Begin by purchasing one of the 10 tickets</p>
-                <p class="lead">
-                    <a href="/buy_ticket" class="btn btn-lg btn-default">Buy me a ticket!</a>
-                </p>
+
+                    <h1 class="cover-heading">Welcome to the blockchain Lottery</h1>
+                    <p class="lead">Begin by purchasing one of the 10 tickets</p>
+                    <p class="lead">
+                        <a href="/buy_ticket" class="btn btn-lg btn-default">Buy me a ticket!</a>
+                    </p>
+
+                    {{#if ticket}}
+                        <p class="lead alert alert-success" role="alert">Congratulations, you've bought a ticket</p>
+
+                    {{/if}}
+
+                    <h2 class="cover-heading">These are the numner of tickets that remain in the lottery</h2>
+                    <p class="lead">{{tickets}}</p>
+
             </div>
 
         </div>

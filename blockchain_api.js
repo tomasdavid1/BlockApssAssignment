@@ -5,7 +5,7 @@ const Web3 = require('web3'),
 
     web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8545")),
 
-    lottery_contract_address ='0x7c335c4d24b7d3e1e1491dac3429905a8bbe1ed9',
+    lottery_contract_address ='0x4da14df55c31e852cc08e63471c6b308ade170b7',
     lottery_abi = [
         {
             "constant": false,
@@ -223,7 +223,6 @@ const Web3 = require('web3'),
      await web3.eth.getAccounts().then( accounts => { web3.eth.defaultAccount = accounts[0]})
 })()
 
-
 module.exports = {
     web3,
     LotteryContract,
@@ -231,36 +230,6 @@ module.exports = {
 }
 
 
-/*
-let buy_ticket = LotteryContract.methods.buy_ticket().send({from: '0x16c12270f76c4d61f115d0cda272601448a5eecc'})
-    .then(reciept => {return 'everything ok '+ reciept})
-    .catch(error => console.log(error))
-
-
-let get_remaining_tickets = LotteryContract.methods.get_remaining_tickets().call({from: '0x16c12270f76c4d61f115d0cda272601448a5eecc'})
-    .then(result => {return web3.utils.isBN(result)})
-
-    .catch((err) => console.log(err))
-
-console.log(get_remaining_tickets)
-
-let get_addresses = LotteryContract.methods.get_addresses().call({from: '0x16c12270f76c4d61f115d0cda272601448a5eecc'})
-    .then(result => {return web3.utils.isBN(result)})
-
-    .catch((err) => console.log(err))
-console.log(get_addresses)
-
-let get_value = Contract.methods.testGet().call({from: '0x16c12270f76c4d61f115d0cda272601448a5eecc'})
-    .then(result => {return web3.utils.isBN(result)})
-
-    .catch((err) => console.log(err))
-
-let set_value =  Contract.methods.testSet([12]).send({from: '0x16c12270f76c4d61f115d0cda272601448a5eecc'})
-    .then(reciept => {return 'everything ok '+ reciept})
-    .catch(error => console.log(error))
-
-
-*/
 
 
 
