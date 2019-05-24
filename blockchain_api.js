@@ -5,8 +5,8 @@ const Web3 = require('web3'),
 
     web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8545")),
 
-    lottery_contract_address ='0x4da14df55c31e852cc08e63471c6b308ade170b7',
-    lottery_abi = [
+    lottery_contract_address ='0x10b5ecf4b4b1ecf20fdbd6459088200077f79a37',
+    lottery_abi =[
         {
             "constant": false,
             "inputs": [],
@@ -217,7 +217,7 @@ const Web3 = require('web3'),
             "type": "function"
         }
     ],
-    LotteryContract = new web3.eth.Contract(lottery_abi, lottery_contract_address);
+    LotteryContract = new web3.eth.Contract(lottery_abi, lottery_contract_address, {defaultGas : 1000000});
 
 (async () =>{
      await web3.eth.getAccounts().then( accounts => { web3.eth.defaultAccount = accounts[0]})

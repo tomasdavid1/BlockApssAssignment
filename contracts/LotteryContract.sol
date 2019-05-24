@@ -10,7 +10,7 @@ contract Lottery{
     uint256 public random_num = 0;
     uint256 public winning_amount = 0;
     uint256 public max_tickets = 0;
-    uint256 public prize = 1 ether;
+    uint256 public prize = 1 wei;
     address public winner;
 
 
@@ -38,26 +38,29 @@ contract Lottery{
 
     }
 
-    function choose_winner() public returns(uint256, address){
+    function choose_winner() public {
 
         random_num = uint256(block.blockhash(block.number-1)) % addresses.length;
         winner = addresses[random_num];
-        winning_amount = max_tickets*prize;
         curr_num_of_tickets = 0;
         remaining_tickets = 10;
         delete addresses;
-        return (winning_amount, winner);
-
 
     }
 
-    function get() public view returns (uint256){
+    function get_winner() public view returns (address, uint256){
+        winning_amount = max_tickets*prize;
+        return (winner, winning_amount);
+    }
+
+    function get_remaining_tickets() public view returns (uint256){
         return remaining_tickets;
     }
 
     function get_addresses() public view returns (address[]){
         return addresses;
     }
+
 
 
 

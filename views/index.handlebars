@@ -21,11 +21,11 @@
                     <h1 class="cover-heading">Welcome to the blockchain Lottery</h1>
                     <p class="lead">Begin by purchasing one of the 10 tickets</p>
                     <p class="lead">
-                        <a href="/buy_ticket" class="btn btn-lg btn-default">Buy me a ticket!</a>
+                        <a href="{{#if choose}}/buy_ticket_choose{{else}}/buy_ticket{{/if}}" class="btn btn-lg btn-default">Buy me a ticket!</a>
                     </p>
 
-                    {{#if ticket}}
-                        <p class="lead alert alert-success" role="alert">Congratulations, you've bought a ticket</p>
+                    {{#if winner}}
+                        <p class="lead alert alert-success" role="alert">Congratulations, {{winner}}, you're the winner!</p>
 
                     {{/if}}
 

@@ -12,18 +12,15 @@ describe('App', function () {
     })
     it('retrieve set value', async () => {
         const data = await app.set_value;
-        expect(data.toString()).to.equal('idk');
+        expect(data.toString()).to.equal('reciept');
     })
 
     it('get addresses',  () => {
         return app.get_addresses.then( data =>{
-            expect(data).to.equal('idk');
+            expect(data).to.equal('addresses');
         })
     })
-    it('retrieve set value', async () => {
-        const data = await app.get_remaining_tickets;
-        expect(data.toString()).to.equal('idk');
-    })
+
     it('retrieve set value', async () => {
         const data = await app.buy_ticket;
         expect(data.toString()).to.equal('idk');

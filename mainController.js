@@ -11,39 +11,23 @@ exports.main = (req, res) => {
             bought = !!req.query.bought;
 
             console.log('hello yes these are the remaining tickets' + remaining_tickets);
-
-            if (remaining_tickets == 0) {
-                LotteryContract.methods.get_winner()
-                    .call()
-
-                    .then(winner => {
-                        console.log('hello yes this is the winner' + winner);
-
-                        res.render('index', {
-                            title: 'Main',
-                            layout: 'main',
-                            winner: winner,
-                            tickets: remaining_tickets,
-                            ticket_bought: bought
-                        });
-
-                    })
-
-                    .catch(error => console.log(error))
-            } else {
+                let choose = remaining_tickets == 1
 
                 res.render('index', {
                     title: 'Main',
                     layout: 'main',
-                    tickets: remaining_tickets
+                    tickets: remaining_tickets,
+                    choose: choose
                 });
 
-            }
+
         })
 };
 
 
+
 exports.buy_ticket = (req,res,next) =>{
+
     LotteryContract.methods.buy_ticket().send({from: web3.eth.defaultAccount}, (error, transactionHash) => {
         if(!error){
             console.log('hi yes i bought a ticket'+transactionHash);
@@ -54,6 +38,31 @@ exports.buy_ticket = (req,res,next) =>{
     });
 };
 
+
+
+exports.choose = (req,res,next)=>{
+
+    LotteryContract.methods.buy_ticket().send({from: web3.eth.defaultAccount}, (error, transactionHash) => {
+        if(!error){
+            console.log('hi yes i bought a ticket'+transactionHash);
+            LotteryContract.methods.get_winner()
+                .call()
+                .then(winner => {
+                    console.log('hello yes this is the winner' + JSON.stringify(winner[0]));
+                    res.render('index', {
+                        title: 'Main',
+                        layout: 'main',
+                        winner: winner[0],
+                    });
+
+                })
+        }else{
+            console.log(error)
+        }
+    });
+
+
+}
 
 exports.get_addresses = (req,res,next) =>{
     LotteryContract.methods.get_addresses()
