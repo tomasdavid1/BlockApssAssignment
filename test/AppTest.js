@@ -5,13 +5,28 @@ const app =  require('../app.js')
 
 describe('App', function () {
 
-    it('retrieve get value', async () => { // no done
+    it('retrieve get value', async () => {
         const data = await app.get_value;
-        expect(data._hex.to.equal('8'));
+        console.log(data)
+        expect(data._hex).to.equal('8');
     })
-    it('retrieve set value', async () => { // no done
+    it('retrieve set value', async () => {
         const data = await app.set_value;
-        expect(data).to.equal('idk');
+        expect(data.toString()).to.equal('idk');
+    })
+
+    it('get addresses',  () => {
+        return app.get_addresses.then( data =>{
+            expect(data).to.equal('idk');
+        })
+    })
+    it('retrieve set value', async () => {
+        const data = await app.get_remaining_tickets;
+        expect(data.toString()).to.equal('idk');
+    })
+    it('retrieve set value', async () => {
+        const data = await app.buy_ticket;
+        expect(data.toString()).to.equal('idk');
     })
 })
 

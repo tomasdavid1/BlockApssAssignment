@@ -11,7 +11,7 @@ contract Lottery{
     uint256 public winning_amount = 0;
     uint256 public max_tickets = 0;
     uint256 public prize = 1 ether;
-    string public winner;
+    address public winner;
 
 
     constructor (string memory _name, string memory _symbol, uint256  _max_tickets)public{
@@ -41,7 +41,7 @@ contract Lottery{
     function choose_winner() public returns(uint256, address){
 
         random_num = uint256(block.blockhash(block.number-1)) % addresses.length;
-        address winner = addresses[random_num];
+        winner = addresses[random_num];
         winning_amount = max_tickets*prize;
         curr_num_of_tickets = 0;
         remaining_tickets = 10;
